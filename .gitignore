@@ -1,0 +1,4 @@
+*~
+venv/
+file_dest/*
+!file_dest/.gitkeep

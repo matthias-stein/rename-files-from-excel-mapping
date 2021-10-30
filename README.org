@@ -1,0 +1,33 @@
+#+TITLE: Rename Files from Excel Mapping
+#+DESCRIPTION: Rename files by providing current and to-be filename mapping in an Excel file.
+
+* About
+A friend of mine had to rename 200 files. He had to record 200 sentences, had a list of the sentences to record. His audio software created files like =recording1.mp3=, =recording2.mp3=, etc. But he wanted the filenames to be the short sentences they contained.
+
+So I quickly made up this little tool to save him from manually renaming the files.
+
+* Installation
+When you intend to use this little tool, download/clone the repo. Then =cd= into the repo folder and run =scripts/make.sh= or =scripts/make.bat=, depending on your OS.
+
+This creates a Python virtual environment and downloads the dependencies from =dep/requirements.txt=.
+
+* Usage
+All you need to do is
++ copy your files to be renamed to =file_srce=
++ copy the Excel mapping file to =file_srce/name_deck.xlsx=
++ activate the virtual environment
+  + Windows :: venv\Scripts\activate
+  + Linux :: source venv/bin/activate
++ run =src/make.py=
++ find your renamed files in =file_dest=
+
+* file_srce/name_deck.xlsx
+The Python script looks for exactly this filename. The file needs to contain a sheet named =deck=, which has two colums:
+
+| srce           | dest            |
+|----------------+-----------------|
+| recording1.mp3 | hello_world.mp3 |
+
+The name in A1 and B1 does not matter, the first line is assumed to have some kind of heading and gets ignored. All the following lines contain in column A the filename which can be found in =file_src/= and in colum B the filename, to which the file from column A will be copied to in =file_dest=.
+
+*Provide filenames only, no paths attached!*
